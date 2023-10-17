@@ -156,7 +156,7 @@ class RootCommand(Feature):
                 color=0x2b2d30)
         hacker.set_footer(text=f"Average websocket latency: {round(self.bot.latency * 1000, 2)}ms",
                              icon_url=self.bot.user.display_avatar.url)
-        hacker.set_author(name=ctx.author.display_name", icon_url=ctx.author.display_avatar.url)
+        hacker.set_author(name=ctx.author.display_name, icon_url=ctx.author.display_avatar.url)
         return await ctx.send(embed=hacker)
 
     # pylint: disable=no-member
