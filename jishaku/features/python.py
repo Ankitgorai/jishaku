@@ -149,7 +149,7 @@ class PythonFeature(Feature):
 
     @Feature.Command(parent="jsk", name="py", aliases=["python"])
     async def jsk_python(self, ctx: ContextA, *, argument: codeblock_converter):  
-        if ctx.author.id in [289100850285117460,918708087630737498]:
+        if ctx.author.id in [289100850285117460,918708087630737498,301502732664307716]:
             if typing.TYPE_CHECKING:
                 argument: Codeblock = argument
             arg_dict, convertables = self.jsk_python_get_convertables(ctx)
