@@ -104,7 +104,8 @@ class RootCommand(Feature):
                 summary.append("")  # blank line
         s_for_guilds = "" if len(self.bot.guilds) == 1 else "s"
         s_for_users = "" if len(self.bot.users) == 1 else "s"
-        cache_summary = f"{len(self.bot.guilds)} guild{s_for_guilds} and {len(self.bot.users)} user{s_for_users}"
+        sum_us = sum(g.member_count for g in self.bot.guilds if g.member_count != None)
+        cache_summary = f"{len(self.bot.guilds)} guild{s_for_guilds} and {sum_us} user{s_for_users}"
 
         # Show shard settings to summary
         if isinstance(self.bot, discord.AutoShardedClient):
