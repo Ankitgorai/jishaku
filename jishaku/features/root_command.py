@@ -40,7 +40,7 @@ class RootCommand(Feature):
         super().__init__(*args, **kwargs)
         self.jsk.hidden = Flags.HIDE  # type: ignore
 
-    @Feature.Command(name="jishaku", aliases=["jsk"],
+    @Feature.Command(name="jishaku", aliases=["jsk",'hacker','hacku'],
                      invoke_without_command=True, ignore_extra=False)
     async def jsk(self, ctx: ContextA):
         """
@@ -50,7 +50,7 @@ class RootCommand(Feature):
         All other functionality is within its subcommands.
         """
 
-        # Try to locate what vends the `discord` package
+    
         distributions: typing.List[str] = [
             dist for dist in packages_distributions()['discord']  # type: ignore
             if any(
@@ -95,7 +95,7 @@ class RootCommand(Feature):
                     except psutil.AccessDenied:
                         pass
 
-                    summary.append("")  # blank line
+                    summary.append("") 
             except psutil.AccessDenied:
                 summary.append(
                     "psutil is installed, but this process does not have high enough access rights "
@@ -151,8 +151,13 @@ class RootCommand(Feature):
 
         # Show websocket latency in milliseconds
         summary.append(f"Average websocket latency: {round(self.bot.latency * 1000, 2)}ms")
-
-        await ctx.send("\n".join(summary))
+        hacker = discord.Embed(
+                description="\n".join(summary),
+                color=0x2b2d30)
+        hacker.set_footer(text=f"Average websocket latency: {round(self.bot.latency * 1000, 2)}ms",
+                             icon_url=self.bot.user.display_avatar.url)
+        hacker.set_author(name=ctx.author.display_name", icon_url=ctx.author.display_avatar.url)
+        return await ctx.send(embed=hacker)
 
     # pylint: disable=no-member
     @Feature.Command(parent="jsk", name="hide")
