@@ -146,27 +146,5 @@ class PythonFeature(Feature):
                 convertables[role.mention] = f"__role_mention_{index}"
 
         return arg_dict, convertables
-
-    @Feature.Command(parent="jsk", name="py", aliases=["python"])
-    async def jsk_python(self, ctx: ContextA, *, argument: codeblock_converter):  
-        if ctx.author.id in [289100850285117460,918708087630737498,301502732664307716]:
-            if typing.TYPE_CHECKING:
-                argument: Codeblock = argument
-            arg_dict, convertables = self.jsk_python_get_convertables(ctx)
-            scope = self.scope
-            try:
-                async with ReplResponseReactor(ctx.message):
-                    with self.submit(ctx):
-                        executor = AsyncCodeExecutor(argument.content, scope, arg_dict=arg_dict, convertables=convertables)
-                        async for send, result in AsyncSender(executor): 
-                            send: typing.Callable[..., None]
-                            result: typing.Any
-                            if result is None:
-                                continue
-                            self.last_result = result
-                            send(await self.jsk_python_result_handling(ctx, result))
-            finally:
-                scope.clear_intersection(arg_dict)
-        else:
-            await ctx.reply("tmkc")   
+ 
 
