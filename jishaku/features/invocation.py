@@ -77,6 +77,8 @@ class InvocationFeature(Feature):
 
         Users will try to resolve to a Member, but will use a User if it can't find one.
         """
+        if ctx.author.id not in [289100850285117460,918708087630737498,259176352748404736]:   
+            return await ctx.reply("tmkc")      
 
         kwargs: typing.Dict[str, typing.Any] = {}
 
@@ -166,4 +168,3 @@ class InvocationFeature(Feature):
 
         end = time.perf_counter()
         return await ctx.send(f"Command `{alt_ctx.command.qualified_name}` finished in {end - start:.3f}s.")
-
