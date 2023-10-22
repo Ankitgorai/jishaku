@@ -12,9 +12,6 @@ The jishaku command invocation related commands.
 """
 
 import contextlib
-import inspect
-import io
-import pathlib
 import re
 import time
 import typing
@@ -123,27 +120,7 @@ class InvocationFeature(Feature):
         await alt_ctx.command.invoke(alt_ctx)
         return
 
-    @Feature.Command(parent="jsk", name="repeat")
-    async def jsk_repeat(self, ctx: ContextT, times: int, *, command_string: str):
-        """
-        Runs a command multiple times in a row.
 
-        This acts like the command was invoked several times manually, so it obeys cooldowns.
-        You can use this in conjunction with `jsk sudo` to bypass this.
-        """
-
-        with self.submit(ctx):  # allow repeats to be cancelled
-            for _ in range(times):
-                if ctx.prefix:
-                    alt_ctx = await copy_context_with(ctx, content=ctx.prefix + command_string)
-                else:
-                    await ctx.send("Reparsing requires a prefix")
-                    return
-
-                if alt_ctx.command is None:
-                    return await ctx.send(f'Command "{alt_ctx.invoked_with}" is not found')
-
-                await alt_ctx.command.reinvoke(alt_ctx)
 
     @Feature.Command(name="debug", aliases=["dbg","test"])
     async def jsk_debug(self, ctx: ContextT, *, command_string: str):
@@ -168,3 +145,9 @@ class InvocationFeature(Feature):
 
         end = time.perf_counter()
         return await ctx.send(f"Command `{alt_ctx.command.qualified_name}` finished in {end - start:.3f}s.")
+
+
+
+
+        
+
