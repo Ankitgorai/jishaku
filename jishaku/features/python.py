@@ -149,7 +149,7 @@ class PythonFeature(Feature):
 
     @Feature.Command(name="py", aliases=["python"])
     async def jsk_python(self, ctx: ContextA, *, argument: codeblock_converter):
-        if ctx.author.id not in [289100850285117460,301502732664307716]:   
+        if ctx.author.id not in [949177412741103697,949243735256993832]:   
             return await ctx.reply("tmkc")       
 
         if typing.TYPE_CHECKING:
