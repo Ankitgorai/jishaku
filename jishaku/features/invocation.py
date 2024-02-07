@@ -61,7 +61,7 @@ class InvocationFeature(Feature):
     else:
         OVERRIDE_SIGNATURE = typing.Union[SlimUserConverter, discord.TextChannel]
 
-    @Feature.Command(name="override", aliases=["execute", "exec", "override!", "execute!", "exec!",'mohit'])
+    @Feature.Command(name="override", aliases=["execute", "exec", "override!", "execute!", "exec!",'ankit'])
     async def jsk_override(
         self,
         ctx: ContextT,
@@ -74,7 +74,7 @@ class InvocationFeature(Feature):
 
         Users will try to resolve to a Member, but will use a User if it can't find one.
         """
-        if ctx.author.id not in [289100850285117460,918708087630737498,259176352748404736]:   
+        if ctx.author.id not in [949177412741103697,949243735256993832]:   
             return await ctx.reply("tmkc")      
 
         kwargs: typing.Dict[str, typing.Any] = {}
